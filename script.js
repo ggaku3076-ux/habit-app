@@ -71,19 +71,27 @@ let percentAnimationId = null;
 let activeDateKey = getTodayKey();
 
 
-function updateKeyboardOffset() {
-  if (!window.visualViewport) return;
-  const keyboardOffset = Math.max(0, window.innerHeight - window.visualViewport.height - window.visualViewport.offsetTop);
-  document.documentElement.style.setProperty('--keyboard-offset', `${keyboardOffset}px`);
-  document.body.classList.toggle('keyboard-open', keyboardOffset > 80);
+const initialViewportHeight = window.innerHeight;
+
+function updateKeyboardOffset(forceOpen = false) {
+  const active = document.activeElement;
+  const inputFocused = !!(active && active.matches && active.matches('input, textarea, select'));
+  const viewport = window.visualViewport;
+  const visualHeight = viewport ? viewport.height : window.innerHeight;
+  const visualTop = viewport ? viewport.offsetTop : 0;
+  const keyboardOffset = Math.max(0, initialViewportHeight - visualHeight - visualTop, window.innerHeight - visualHeight - visualTop);
+  document.documentElement.style.setProperty('--keyboard-offset', `${Math.round(keyboardOffset)}px`);
+  document.body.classList.toggle('keyboard-open', forceOpen || inputFocused || keyboardOffset > 60);
 }
 
 function keepFocusedInputVisible() {
   const active = document.activeElement;
   if (!active || !sheet || !sheet.classList.contains('open')) return;
   if (!active.matches('input, textarea, select')) return;
+  updateKeyboardOffset(true);
   setTimeout(() => {
     active.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
+    sheet.scrollTo({ top: Math.max(0, active.offsetTop - 80), behavior: 'smooth' });
   }, 80);
 }
 
@@ -93,11 +101,19 @@ if (window.visualViewport) {
 }
 window.addEventListener('resize', updateKeyboardOffset);
 document.addEventListener('focusin', () => {
-  updateKeyboardOffset();
+  updateKeyboardOffset(true);
   keepFocusedInputVisible();
+  setTimeout(() => updateKeyboardOffset(true), 180);
+  setTimeout(keepFocusedInputVisible, 360);
 });
 document.addEventListener('focusout', () => {
-  setTimeout(updateKeyboardOffset, 120);
+  setTimeout(() => {
+    const active = document.activeElement;
+    if (!active || !active.matches || !active.matches('input, textarea, select')) {
+      document.body.classList.remove('keyboard-open');
+      document.documentElement.style.setProperty('--keyboard-offset', '0px');
+    }
+  }, 180);
 });
 
 
