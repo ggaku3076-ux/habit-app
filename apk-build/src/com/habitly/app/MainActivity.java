@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 public class MainActivity extends Activity {
+    private static final String APP_URL = "https://habit-app-red.vercel.app/";
     private static final long SPLASH_DURATION_MS = 2600;
     private WebView webView;
     private FrameLayout root;
@@ -54,13 +55,15 @@ public class MainActivity extends Activity {
         settings.setAllowFileAccess(true);
         settings.setAllowContentAccess(true);
         settings.setMediaPlaybackRequiresUserGesture(false);
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        settings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
 
         splashView = createSplashView();
         root.addView(webView);
         root.addView(splashView);
         setContentView(root);
 
-        webView.loadUrl("file:///android_asset/index.html");
+        webView.loadUrl(APP_URL);
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -75,11 +78,11 @@ public class MainActivity extends Activity {
         splash.setClickable(true);
 
         ImageView logo = new ImageView(this);
-        logo.setImageResource(getResources().getIdentifier("ic_launcher", "mipmap", getPackageName()));
+        logo.setImageResource(getResources().getIdentifier("splash_logo", "drawable", getPackageName()));
         logo.setAdjustViewBounds(true);
         logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
-        int size = (int) (180 * getResources().getDisplayMetrics().density);
+        int size = (int) (220 * getResources().getDisplayMetrics().density);
         FrameLayout.LayoutParams logoParams = new FrameLayout.LayoutParams(size, size);
         logoParams.gravity = Gravity.CENTER;
         splash.addView(logo, logoParams);
