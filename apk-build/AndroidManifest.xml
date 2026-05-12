@@ -10,8 +10,8 @@
     <application
         android:theme="@style/AppTheme"
         android:label="Habitly"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/splash_logo"
+        android:roundIcon="@drawable/splash_logo"
         android:allowBackup="false"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true">
