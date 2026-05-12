@@ -70,6 +70,36 @@ let animatedPercent = 0;
 let percentAnimationId = null;
 let activeDateKey = getTodayKey();
 
+
+function updateKeyboardOffset() {
+  if (!window.visualViewport) return;
+  const keyboardOffset = Math.max(0, window.innerHeight - window.visualViewport.height - window.visualViewport.offsetTop);
+  document.documentElement.style.setProperty('--keyboard-offset', `${keyboardOffset}px`);
+  document.body.classList.toggle('keyboard-open', keyboardOffset > 80);
+}
+
+function keepFocusedInputVisible() {
+  const active = document.activeElement;
+  if (!active || !sheet || !sheet.classList.contains('open')) return;
+  if (!active.matches('input, textarea, select')) return;
+  setTimeout(() => {
+    active.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
+  }, 80);
+}
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', updateKeyboardOffset);
+  window.visualViewport.addEventListener('scroll', updateKeyboardOffset);
+}
+window.addEventListener('resize', updateKeyboardOffset);
+document.addEventListener('focusin', () => {
+  updateKeyboardOffset();
+  keepFocusedInputVisible();
+});
+document.addEventListener('focusout', () => {
+  setTimeout(updateKeyboardOffset, 120);
+});
+
 function setTodayDate() {
   const formatted = new Intl.DateTimeFormat('id-ID', {
     weekday: 'long',
@@ -414,7 +444,11 @@ function openSheet(mode = 'habit') {
   configureSheet(mode);
   backdrop.hidden = false;
   sheet.setAttribute('aria-hidden', 'false');
-  requestAnimationFrame(() => sheet.classList.add('open'));
+  updateKeyboardOffset();
+  requestAnimationFrame(() => {
+    sheet.classList.add('open');
+    keepFocusedInputVisible();
+  });
   addButton.classList.add('pulse');
   setTimeout(() => addButton.classList.remove('pulse'), 280);
 }
@@ -435,6 +469,8 @@ function configureSheet(mode) {
 function closeSheet() {
   sheet.classList.remove('open');
   sheet.setAttribute('aria-hidden', 'true');
+  document.documentElement.style.setProperty('--keyboard-offset', '0px');
+  document.body.classList.remove('keyboard-open');
   setTimeout(() => { backdrop.hidden = true; }, 220);
 }
 

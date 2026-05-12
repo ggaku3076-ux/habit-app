@@ -1488,3 +1488,20 @@ body {
   bottom: 0;
   padding-bottom: max(15px, env(safe-area-inset-bottom));
 }
+
+/* Keyboard-safe sheet fix */
+:root { --keyboard-offset: 0px; }
+.add-sheet {
+  max-height: calc(100dvh - var(--keyboard-offset, 0px) - 28px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.keyboard-open .add-sheet.open {
+  bottom: max(14px, calc(var(--keyboard-offset, 0px) + 14px));
+}
+.keyboard-open .sheet-backdrop {
+  position: fixed;
+}
+.habit-form input {
+  scroll-margin-bottom: calc(var(--keyboard-offset, 0px) + 130px);
+}
