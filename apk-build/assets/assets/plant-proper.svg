@@ -1,0 +1,37 @@
+<svg width="900" height="900" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="leaf1" x1="441" y1="63" x2="478" y2="528" gradientUnits="userSpaceOnUse"><stop stop-color="#DDF5B8"/><stop offset=".45" stop-color="#87C96F"/><stop offset="1" stop-color="#2F6B44"/></linearGradient>
+    <linearGradient id="leaf2" x1="186" y1="145" x2="445" y2="560" gradientUnits="userSpaceOnUse"><stop stop-color="#CDEFA7"/><stop offset=".5" stop-color="#72B96C"/><stop offset="1" stop-color="#2B5F3E"/></linearGradient>
+    <linearGradient id="leaf3" x1="706" y1="138" x2="461" y2="560" gradientUnits="userSpaceOnUse"><stop stop-color="#E6F7BC"/><stop offset=".48" stop-color="#80C56D"/><stop offset="1" stop-color="#356F46"/></linearGradient>
+    <linearGradient id="leaf4" x1="72" y1="355" x2="422" y2="597" gradientUnits="userSpaceOnUse"><stop stop-color="#A9DF8E"/><stop offset="1" stop-color="#2E7048"/></linearGradient>
+    <linearGradient id="leaf5" x1="830" y1="345" x2="475" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#BFF0A1"/><stop offset="1" stop-color="#34784D"/></linearGradient>
+    <linearGradient id="pot" x1="267" y1="540" x2="619" y2="834" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF3C4"/><stop offset=".42" stop-color="#E7B76F"/><stop offset="1" stop-color="#A9643D"/></linearGradient>
+    <radialGradient id="shine" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(362 602) rotate(55) scale(192 128)"><stop stop-color="#FFFBE8" stop-opacity=".8"/><stop offset="1" stop-color="#FFFBE8" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="38" y="40" width="824" height="826" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#16301F" flood-opacity=".28"/></filter>
+    <filter id="inner" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur in="SourceAlpha" stdDeviation="2" result="b"/><feOffset dx="0" dy="4"/><feComposite in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 .82 0 0 0 .22 0"/></filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M451 533C391 438 380 295 450 73C518 211 540 402 451 533Z" fill="url(#leaf1)"/>
+    <path d="M450 519C446 411 451 258 452 95" stroke="#F4FFD0" stroke-width="8" stroke-linecap="round" opacity=".5"/>
+    <path d="M421 548C303 500 207 392 175 153C311 207 450 344 421 548Z" fill="url(#leaf2)"/>
+    <path d="M419 532C363 425 276 293 185 166" stroke="#EDFAC9" stroke-width="7" stroke-linecap="round" opacity=".42"/>
+    <path d="M482 548C598 493 684 380 717 145C584 203 455 347 482 548Z" fill="url(#leaf3)"/>
+    <path d="M483 532C537 419 621 286 707 158" stroke="#F6FFD4" stroke-width="7" stroke-linecap="round" opacity=".45"/>
+    <path d="M371 583C240 591 129 520 73 359C222 350 347 424 371 583Z" fill="url(#leaf4)"/>
+    <path d="M366 572C276 505 173 431 85 365" stroke="#E8F8C3" stroke-width="7" stroke-linecap="round" opacity=".36"/>
+    <path d="M530 584C661 588 770 513 824 350C675 346 552 423 530 584Z" fill="url(#leaf5)"/>
+    <path d="M535 573C625 502 727 425 812 357" stroke="#F2FFD0" stroke-width="7" stroke-linecap="round" opacity=".38"/>
+    <path d="M418 606C316 664 186 647 95 529C221 484 358 501 418 606Z" fill="#5FA35C"/>
+    <path d="M415 598C304 576 197 553 104 529" stroke="#E0F4BC" stroke-width="7" stroke-linecap="round" opacity=".32"/>
+    <path d="M485 606C587 660 717 638 804 516C677 477 542 499 485 606Z" fill="#69B363"/>
+    <path d="M489 598C599 570 705 544 795 517" stroke="#ECFAC7" stroke-width="7" stroke-linecap="round" opacity=".34"/>
+    <path d="M452 628C388 574 369 482 418 390C489 459 511 556 452 628Z" fill="#9BD57A"/>
+    <path d="M452 614C437 544 426 469 420 397" stroke="#FAFFD8" stroke-width="6" stroke-linecap="round" opacity=".5"/>
+    <path d="M258 544C258 516 281 493 309 493H591C619 493 642 516 642 544V585C642 614 619 637 590 637H310C281 637 258 614 258 585V544Z" fill="#FFF2BE"/>
+    <path d="M292 604H608L570 790C564 820 537 842 506 842H394C363 842 336 820 330 790L292 604Z" fill="url(#pot)"/>
+    <path d="M292 604H608L570 790C564 820 537 842 506 842H394C363 842 336 820 330 790L292 604Z" fill="url(#shine)"/>
+    <path d="M318 636H582" stroke="#C98750" stroke-width="12" stroke-linecap="round" opacity=".35"/>
+    <path d="M373 678C390 724 393 775 381 817" stroke="#FFF4CE" stroke-width="11" stroke-linecap="round" opacity=".32"/>
+    <path d="M536 674C531 724 520 783 506 819" stroke="#8F4E34" stroke-width="10" stroke-linecap="round" opacity=".18"/>
+  </g>
+</svg>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Habit App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500;6..12,600;6..12,700;6..12,800;6..12,900;6..12,1000&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app" aria-label="Habit App mobile preview berdasarkan PRD">
+    <section class="hero page page-home active-page" data-page="home">
+      <header class="hero-header">
+        <div class="brand"><span>habitly</span></div>
+        <button class="add-btn" aria-label="Tambah habit">+</button>
+      </header>
+
+      <div class="hero-copy">
+        <h1>today’s<br />habits</h1>
+        <p>Small steps,<br />big change.</p>
+      </div>
+
+      <article class="progress-card">
+        <div class="progress-row">
+          <span>Daily progress</span>
+          <strong><b>4</b> / 6 completed</strong>
+        </div>
+        <div class="progress-bottom">
+          <div class="segments" aria-label="Daily progress 67%">
+            <i class="filled"></i>
+            <i class="filled"></i>
+            <i class="filled"></i>
+            <i class="filled"></i>
+            <i></i>
+          </div>
+          <div class="percent">67%</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="content page page-home active-page" data-page="home">
+      <p class="today-date" aria-live="polite"></p>
+      <div class="stats-grid">
+        <article><b>12</b><span>Habits</span></article>
+        <article><b>86%</b><span>Weekly</span></article>
+        <article><b>24</b><span>Points</span></article>
+      </div>
+      <div class="section-head habits-head">
+        <h2>habits</h2>
+        <button class="habit-edit-toggle" type="button">View all</button>
+      </div>
+
+      <div class="habit-list">
+        <article class="habit-card">
+          <div class="icon-bubble">
+            <svg viewBox="0 0 24 24"><path d="M12 3s6 6.2 6 11a6 6 0 0 1-12 0c0-4.8 6-11 6-11Z"/><path d="M9.4 15.4c.7 1.1 1.6 1.7 2.9 1.7"/></svg>
+          </div>
+          <div class="habit-copy">
+            <h3>Drink Water</h3>
+            <p>7 glasses a day</p>
+            <button class="edit-icon-btn" type="button" aria-label="Ganti icon Drink Water">Icon</button>
+          </div>
+          <button class="check checked" aria-label="Drink Water selesai">
+            <svg viewBox="0 0 24 24"><path d="m5 12.5 4.1 4.1L19 7"/></svg>
+          </button>
+          <button class="delete-habit" type="button" aria-label="Hapus Drink Water">×</button>
+        </article>
+
+        <article class="habit-card">
+          <div class="icon-bubble">
+            <svg viewBox="0 0 24 24"><path d="M5 9v6M19 9v6M8 12h8M3.5 10.5v3M20.5 10.5v3"/></svg>
+          </div>
+          <div class="habit-copy">
+            <h3>Workout</h3>
+            <p>30 min exercise</p>
+            <button class="edit-icon-btn" type="button" aria-label="Ganti icon Workout">Icon</button>
+          </div>
+          <button class="check" aria-label="Tandai Workout selesai"></button>
+          <button class="delete-habit" type="button" aria-label="Hapus Workout">×</button>
+        </article>
+
+        <article class="habit-card">
+          <div class="icon-bubble">
+            <svg viewBox="0 0 24 24"><path d="M18 15.5A7 7 0 0 1 8.5 6a6.8 6.8 0 1 0 9.5 9.5Z"/><path d="M17.5 4v3M16 5.5h3"/></svg>
+          </div>
+          <div class="habit-copy">
+            <h3>Sleep Early</h3>
+            <p>Before 11:00 PM</p>
+            <button class="edit-icon-btn" type="button" aria-label="Ganti icon Sleep Early">Icon</button>
+          </div>
+          <button class="check checked" aria-label="Sleep Early selesai">
+            <svg viewBox="0 0 24 24"><path d="m5 12.5 4.1 4.1L19 7"/></svg>
+          </button>
+          <button class="delete-habit" type="button" aria-label="Hapus Sleep Early">×</button>
+        </article>
+      </div>
+
+      <div class="section-head todo-head">
+        <h2>daily schedule</h2>
+        <button class="todo-edit-toggle" type="button">View all</button>
+      </div>
+
+      <div class="todo-list">
+        <article class="todo-card"><button class="todo-check" aria-label="Tandai Reply to messages"></button><span>Reply to messages</span><button class="delete-todo" type="button" aria-label="Hapus Reply to messages">×</button></article>
+        <article class="todo-card"><button class="todo-check" aria-label="Tandai Grocery shopping"></button><span>Grocery shopping</span><button class="delete-todo" type="button" aria-label="Hapus Grocery shopping">×</button></article>
+      </div>
+      <button class="add-todo" type="button">+ Add daily schedule</button>
+    </section>
+
+    <section class="statistics-page page" data-page="stats" aria-label="Statistics page">
+      <header class="stats-hero">
+        <p class="stats-date"></p>
+        <h1>Statistics</h1>
+        <span>Track your consistency</span>
+      </header>
+
+      <article class="level-card">
+        <div class="level-top">
+          <p>Level Konsisten</p>
+          <strong class="level-name">Level 1 • Fresh Starter</strong>
+        </div>
+        <div class="level-bar" aria-label="Progress menuju level berikutnya">
+          <i></i>
+        </div>
+        <small class="level-next">0 / 10 points to next level</small>
+      </article>
+
+      <section class="weekly-card">
+        <div>
+          <span>Weekly</span>
+          <strong class="weekly-page-percent">0%</strong>
+        </div>
+        <div>
+          <span>Completed</span>
+          <strong class="weekly-completed">0</strong>
+        </div>
+        <div>
+          <span>Best day</span>
+          <strong class="best-day">Today</strong>
+        </div>
+      </section>
+
+      <section class="target-card">
+        <div>
+          <span>Daily target</span>
+          <strong class="target-text">0 / 0 completed</strong>
+        </div>
+        <div class="target-bar" aria-label="Daily target progress"><i></i></div>
+      </section>
+
+      <section class="chart-card">
+        <div class="section-head compact-head">
+          <h2>7-day progress</h2>
+        </div>
+        <div class="week-chart" aria-label="7 day progress chart"></div>
+      </section>
+
+      <section class="breakdown-grid">
+        <article><b class="completed-habits">0</b><span>Completed habits</span></article>
+        <article><b class="pending-habits">0</b><span>Pending habits</span></article>
+        <article><b class="schedule-done">0</b><span>Schedules done</span></article>
+      </section>
+
+      <section class="badge-card">
+        <h2>Achievements</h2>
+        <div class="badge-list">
+          <span class="streak-badge">🔥 0 days streak</span>
+          <span class="weekly-badge">🌿 Weekly 0%</span>
+          <span>⭐ Focus mode</span>
+        </div>
+      </section>
+    </section>
+
+    <section class="profile-page page" data-page="profile" aria-label="Profile page">
+      <header class="stats-hero profile-hero">
+        <p>Coming soon</p>
+        <h1>Profile</h1>
+        <span>Your habit identity will live here.</span>
+      </header>
+    </section>
+
+    <div class="icon-picker" aria-hidden="true">
+      <div class="icon-picker-panel">
+        <div class="icon-picker-head">
+          <div>
+            <p>Choose logo</p>
+            <h2>Habit icon</h2>
+          </div>
+          <button class="icon-picker-close" type="button" aria-label="Tutup icon picker">×</button>
+        </div>
+        <div class="icon-grid" aria-label="100 pilihan icon logo habit"></div>
+      </div>
+    </div>
+
+    <div class="sheet-backdrop" hidden></div>
+    <section class="add-sheet" aria-label="Tambah habit baru" aria-hidden="true">
+      <div class="sheet-handle"></div>
+      <div class="sheet-head">
+        <div>
+          <p>New habit</p>
+          <h2>Create routine</h2>
+        </div>
+        <button class="sheet-close" aria-label="Tutup">×</button>
+      </div>
+      <form class="habit-form">
+        <label class="name-field">
+          <span>Habit name</span>
+          <input name="name" type="text" placeholder="Morning walk" autocomplete="off" required />
+        </label>
+        <label class="goal-field">
+          <span>Reminder / goal</span>
+          <input name="goal" type="text" placeholder="20 min at 07:00" autocomplete="off" required />
+        </label>
+        <button class="save-habit" type="submit">Add habit</button>
+      </form>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Bottom navigation">
+      <button class="nav-item active" aria-label="Home" data-target="home">
+        <svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9.5Z"/></svg>
+      </button>
+      <button class="nav-item" aria-label="Statistik" data-target="stats">
+        <svg viewBox="0 0 24 24"><path d="M6 19V9M12 19V5M18 19v-7"/></svg>
+      </button>
+      <button class="nav-item" aria-label="Profile" data-target="profile">
+        <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
+      </button>
+    </nav>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
