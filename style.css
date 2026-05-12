@@ -1505,3 +1505,33 @@ body {
 .habit-form input {
   scroll-margin-bottom: calc(var(--keyboard-offset, 0px) + 130px);
 }
+
+/* Reliable button/tap behavior */
+button, .icon-bubble {
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+.delete-habit,
+.delete-todo,
+.edit-icon-btn,
+.add-todo {
+  pointer-events: none;
+}
+.editing-habits .delete-habit,
+.editing-habits .edit-icon-btn,
+.editing-todos .delete-todo,
+.editing-todos .add-todo {
+  pointer-events: auto;
+}
+.section-head button,
+.add-btn,
+.nav-item,
+.sheet-close,
+.save-habit,
+.icon-picker-close,
+.icon-option,
+.check,
+.todo-check {
+  position: relative;
+  z-index: 2;
+}

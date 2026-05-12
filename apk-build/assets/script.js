@@ -100,6 +100,146 @@ document.addEventListener('focusout', () => {
   setTimeout(updateKeyboardOffset, 120);
 });
 
+
+function handleAppButtonClick(event) {
+  const target = event.target;
+
+  if (target === backdrop) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    closeSheet();
+    return;
+  }
+
+  if (target === iconPicker) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    closeIconPicker();
+    return;
+  }
+
+  const button = target.closest('button, .icon-bubble');
+  if (!button || !app.contains(button)) return;
+
+  const stop = () => {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  };
+
+  if (button.closest('.add-btn')) {
+    stop();
+    openSheet('habit');
+    return;
+  }
+
+  if (button.closest('.habit-edit-toggle')) {
+    stop();
+    toggleHabitEditor();
+    return;
+  }
+
+  if (button.closest('.todo-edit-toggle')) {
+    stop();
+    toggleTodoEditor();
+    return;
+  }
+
+  if (button.closest('.add-todo')) {
+    stop();
+    addDailySchedule();
+    return;
+  }
+
+  const nav = button.closest('.nav-item');
+  if (nav) {
+    stop();
+    showPage(nav.dataset.target || 'home');
+    return;
+  }
+
+  if (button.closest('.sheet-close')) {
+    stop();
+    closeSheet();
+    return;
+  }
+
+  if (button.closest('.icon-picker-close')) {
+    stop();
+    closeIconPicker();
+    return;
+  }
+
+  const iconOption = button.closest('.icon-option');
+  if (iconOption) {
+    stop();
+    chooseHabitIcon(iconOption.textContent.trim());
+    return;
+  }
+
+  const editIcon = button.closest('.edit-icon-btn');
+  if (editIcon) {
+    stop();
+    const card = editIcon.closest('.habit-card');
+    if (card) openIconPicker(card);
+    return;
+  }
+
+  const iconBubble = button.closest('.icon-bubble');
+  if (iconBubble) {
+    if (!isEditingHabits) return;
+    stop();
+    const card = iconBubble.closest('.habit-card');
+    if (card) openIconPicker(card);
+    return;
+  }
+
+  const habitCheck = button.closest('.check');
+  if (habitCheck) {
+    stop();
+    if (isEditingHabits) return;
+    const card = habitCheck.closest('.habit-card');
+    habitCheck.classList.toggle('checked');
+    if (card) card.dataset.checkedDate = habitCheck.classList.contains('checked') ? getTodayKey() : '';
+    habitCheck.innerHTML = habitCheck.classList.contains('checked') ? checkIcon : '';
+    saveHabits();
+    updateProgress();
+    return;
+  }
+
+  const habitDelete = button.closest('.delete-habit');
+  if (habitDelete) {
+    stop();
+    const card = habitDelete.closest('.habit-card');
+    if (card) removeCard(card, () => {
+      saveHabits();
+      updateProgress();
+    });
+    return;
+  }
+
+  const todoCheck = button.closest('.todo-check');
+  if (todoCheck) {
+    stop();
+    const card = todoCheck.closest('.todo-card');
+    if (!card) return;
+    card.classList.toggle('done');
+    todoCheck.innerHTML = card.classList.contains('done') ? checkIcon : '';
+    saveTodos();
+    updateProgress();
+    return;
+  }
+
+  const todoDelete = button.closest('.delete-todo');
+  if (todoDelete) {
+    stop();
+    const card = todoDelete.closest('.todo-card');
+    if (card) removeCard(card, () => {
+      saveTodos();
+      updateProgress();
+    });
+  }
+}
+
 function setTodayDate() {
   const formatted = new Intl.DateTimeFormat('id-ID', {
     weekday: 'long',
@@ -728,5 +868,6 @@ habitForm.addEventListener('submit', (event) => {
   closeSheet();
 });
 
+document.addEventListener('click', handleAppButtonClick, true);
 setInterval(refreshDailyState, 60 * 1000);
 updateProgress();
